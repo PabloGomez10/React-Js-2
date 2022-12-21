@@ -1,25 +1,31 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from "react";
+import NavBar from "./componentes/navBar";
+import ItemListContainer from "./componentes/itemListContainer";
+import Card from "./componentes/card";
+import { Outlet, Route, Routes } from "react-router-dom";
+import Descripcion from "./componentes/descripcion"
+import datos from "./backend.json"
+
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+  
+    return (
+      <div className="">
+     <NavBar/>
+     <Routes>
+      <Route exact path = "/" element = { <ItemListContainer Bienvenidos= "Bienvenidos a Delta Informatica"/>} />
+      <Route path="/productos" element = {<Card/>}/>
+      <Route path="/productos/:nombre" element={ <Descripcion datos={datos}/>}/>
+     </Routes>
+
+     {/* <ItemListContainer Bienvenidos= "Bienvenidos a Delta Informatica"/> */}
+     
+<Outlet/>
     </div>
-  );
+    );
+
 }
+
+
 
 export default App;
